@@ -1,1 +1,17 @@
-{{ band }}
+
+{% extends 'myblog/base.html' %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+
+<h1>{{ band }}</h1>
+
+<h2>Members:</h2>
+
+<ul>
+    {% for person in band.persons_set.all %}
+    <li>{{ person.name }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

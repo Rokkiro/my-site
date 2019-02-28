@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Band, Persons
 #from django.template import loader
@@ -21,9 +21,10 @@ def index(request):
 
 def persons(request,band_id):
     #return HttpResponse('<h2>Persons in band ' + str(band_id) + '</h2>')
-    try:
-        band = Band.objects.get(id=band_id)
-    except Band.DoesNotExist:
-        raise Http404("Band does not exist")
+    #try:
+    #    band = Band.objects.get(id=band_id)
+    #except Band.DoesNotExist:
+    #    raise Http404("Band does not exist")
+    band = get_object_or_404(Band, id=band_id)
     return render(request, 'myblog/persons.html', {'band':band,})
     
